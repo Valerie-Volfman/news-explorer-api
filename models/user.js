@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
+const CentralError = require('../errors/central-error')
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -33,12 +34,12 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(
     .select('+password')
     .then((user) => {
       if (!user) {
-        throw new Error(401, 'Authorization Required');
+        throw new CentralError(401, 'Authorization Required');
       }
 
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
-          throw new Error(401, 'Authorization Required');
+          throw new CentralError(401, 'Authorization Required');
         }
 
         return user;
