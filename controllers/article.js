@@ -1,5 +1,6 @@
 const Article = require('../models/article');
-const CentralError = require('../errors/central-error');
+const NO_ARTICLE_FOUND = require('../lib/constants');
+const FORBIDDEN_ERROR = require('../lib/constants');
 
 module.exports.createArticle = (req, res, next) => {
   const {
@@ -21,10 +22,10 @@ module.exports.deleteArticle = (req, res, next) => {
   Article.findOne({ _id: req.params.articleId })
     .then((article) => {
       if (!article) {
-        throw new CentralError(404, 'No article found with that id');
+        throw NO_ARTICLE_FOUND;
       }
       if (article.owner.valueOf() !== req.user._id) {
-        throw new CentralError(403, 'Forbidden error');
+        throw FORBIDDEN_ERROR;
       }
       return Article.findOneAndDelete({ _id: req.params.articleId });
     })
