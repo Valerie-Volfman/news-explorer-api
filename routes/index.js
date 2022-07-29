@@ -1,9 +1,9 @@
+const express = require('express');
 const userRouter = require('./users');
 const articleRouter = require('./articles');
 const { createUser, login } = require('../controllers/user');
 const auth = require('../middlewares/auth');
 const CentralError = require('../errors/central-error');
-const express = require('express');
 
 const router = express.Router();
 router.post('/signin', login);

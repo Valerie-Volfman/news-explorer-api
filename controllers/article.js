@@ -1,6 +1,6 @@
 const Article = require('../models/article');
-const NO_ARTICLE_FOUND = require('../lib/constants');
-const FORBIDDEN_ERROR = require('../lib/constants');
+const { NO_ARTICLE_FOUND } = require('../lib/constants');
+const { FORBIDDEN_ERROR } = require('../lib/constants');
 
 module.exports.createArticle = (req, res, next) => {
   const {

@@ -8,7 +8,6 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const ErrorHandler = require('./middlewares/error-handler');
 
-
 const { PORT = 3000 } = process.env;
 const { NODE_ENV, MDB_ADDRESS } = process.env;
 
