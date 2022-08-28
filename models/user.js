@@ -34,12 +34,12 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials(
     .select('+password')
     .then((user) => {
       if (!user) {
-        throw new CentralError(401, 'Authorization Required');
+        throw new CentralError(401, 'Incorrect email or password');
       }
 
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
-          throw new CentralError(401, 'Authorization Required');
+          throw new CentralError(401, 'Incorrect email or password');
         }
 
         return user;

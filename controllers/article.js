@@ -14,8 +14,12 @@ module.exports.createArticle = (req, res, next) => {
     .catch(next);
 };
 module.exports.getArticles = (req, res, next) => {
-  Article.find()
-    .then((articles) => res.send(articles))
+  Article.find({})
+    .select('+owner')
+    .then((articles) => {
+      const arr = articles.filter((item) => item.owner.valueOf().toString() === req.user._id);
+      res.send(arr);
+    })
     .catch(next);
 };
 module.exports.deleteArticle = (req, res, next) => {

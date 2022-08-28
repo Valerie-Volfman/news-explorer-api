@@ -1,4 +1,5 @@
 const ErrorHandler = (err, res) => {
+  console.log(err);
   if (err.name === 'CastError') {
     res.status(400).send({ message: 'Invalid data' });
   }
