@@ -1,1 +1,1 @@
-# news-explorer-api
+(news-explorer-api) [https://api.news-explorer-valerie.students.nomoredomainssbs.ru]
